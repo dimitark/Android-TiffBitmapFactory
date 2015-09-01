@@ -16,6 +16,7 @@ int origwidth = 0;
 int origheight = 0;
 jobject preferedConfig;
 
+
 JNIEXPORT jobject
 JNICALL Java_org_beyka_tiffbitmapfactory_TiffBitmapFactory_nativeDecodePath
         (JNIEnv *env, jclass clazz, jstring path, jobject options) {

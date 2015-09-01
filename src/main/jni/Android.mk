@@ -80,7 +80,8 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := tifffactory
 LOCAL_CFLAGS := -DANDROID_NDK
 LOCAL_SRC_FILES := \
-	NativeTiffBitmapFactory.cpp
+	TiffLoader.cpp \
+	TiffImage.cpp
 LOCAL_LDLIBS := -ldl -llog -ljnigraphics
 LOCAL_LDFLAGS +=-ljnigraphics
 LOCAL_SHARED_LIBRARIES := tiff

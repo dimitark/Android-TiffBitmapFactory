@@ -7,63 +7,65 @@ import java.io.File;
 /**
  * Created by alexeyba on 7/17/15.
  */
-public class TiffBitmapFactory {
+public class TiffBitmapFactory_legacy {
 
-    static {
-        System.loadLibrary("tifffactory");
-    }
-
-    /**
-     * Decode file to bitmap with default options. If the specified file name is null,
-     * or cannot be decoded into a bitmap, the function returns null.
-     * @param file - file to decode
-     * @return The decoded bitmap, or null if the image data could not be
-     *         decoded
-     */
-    public static Bitmap decodeFile(File file) {
-        return nativeDecodePath(file.getAbsolutePath(), new Options());
-    }
-
-    /**
-     * Decode file to bitmap with specified options. If the specified file name is null,
-     * or cannot be decoded into a bitmap, the function returns null.
-     * @param file - file to decode
-     * @param options - options for decoding
-     * @return The decoded bitmap, or null if the image data could not be
-     *         decoded, or, if options is non-null, if options requested only the
-     *         size be returned (in options.outWidth, options.outHeight, options.outDirectoryCount)
-     */
-    public static Bitmap decodeFile(File file, Options options) {
-        return nativeDecodePath(file.getAbsolutePath(), options);
-    }
-
-    /**
-     * Decode path to bitmap with default options. If the specified file name is null,
-     * or cannot be decoded into a bitmap, the function returns null.
-     * @param path - file to decode
-     * @return The decoded bitmap, or null if the image data could not be
-     *         decoded
-     */
-    public static Bitmap decodePath(String path) {
-        return nativeDecodePath(path, new Options());
-    }
-
-    /**
-     * Decode path to bitmap with specified options. If the specified file name is null,
-     * or cannot be decoded into a bitmap, the function returns null.
-     * @param path - file to decode
-     * @param options - options for decoding
-     * @return The decoded bitmap, or null if the image data could not be
-     *         decoded, or, if options is non-null, if options requested only the
-     *         size be returned (in options.outWidth, options.outHeight, options.outDirectoryCount)
-     */
-    public static Bitmap decodePath(String path, Options options) {
-        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-        return nativeDecodePath(path, options);
-    }
-
-    private static native Bitmap nativeDecodePath(String path, Options options);
-
+//    static {
+//        System.loadLibrary("tifffactory");
+//    }
+//
+//    /**
+//     * Decode file to bitmap with default options. If the specified file name is null,
+//     * or cannot be decoded into a bitmap, the function returns null.
+//     * @param file - file to decode
+//     * @return The decoded bitmap, or null if the image data could not be
+//     *         decoded
+//     */
+//    public static Bitmap decodeFile(File file) {
+//        return nativeDecodePath(file.getAbsolutePath(), new Options());
+//    }
+//
+//    /**
+//     * Decode file to bitmap with specified options. If the specified file name is null,
+//     * or cannot be decoded into a bitmap, the function returns null.
+//     * @param file - file to decode
+//     * @param options - options for decoding
+//     * @return The decoded bitmap, or null if the image data could not be
+//     *         decoded, or, if options is non-null, if options requested only the
+//     *         size be returned (in options.outWidth, options.outHeight, options.outDirectoryCount)
+//     */
+//    public static Bitmap decodeFile(File file, Options options) {
+//        return nativeDecodePath(file.getAbsolutePath(), options);
+//    }
+//
+//    /**
+//     * Decode path to bitmap with default options. If the specified file name is null,
+//     * or cannot be decoded into a bitmap, the function returns null.
+//     * @param path - file to decode
+//     * @return The decoded bitmap, or null if the image data could not be
+//     *         decoded
+//     */
+//    public static Bitmap decodePath(String path) {
+//        return nativeDecodePath(path, new Options());
+//    }
+//
+//    /**
+//     * Decode path to bitmap with specified options. If the specified file name is null,
+//     * or cannot be decoded into a bitmap, the function returns null.
+//     * @param path - file to decode
+//     * @param options - options for decoding
+//     * @return The decoded bitmap, or null if the image data could not be
+//     *         decoded, or, if options is non-null, if options requested only the
+//     *         size be returned (in options.outWidth, options.outHeight, options.outDirectoryCount)
+//     */
+//    public static Bitmap decodePath(String path, Options options) {
+//        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+//        return nativeDecodePath(path, options);
+//    }
+//
+//    private static native Bitmap nativeDecodePath(String path, Options options);
+//
+//    public static native int getDyrectoryCount();
+//
     /**
      * Options class to specify decoding parameters
      */
