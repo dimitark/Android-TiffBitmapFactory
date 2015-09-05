@@ -44,6 +44,11 @@ jint Java_si_dime_android_tiffloader_TiffLoader_getDirectoryCount(JNIEnv *, jobj
  */
 jintArray Java_si_dime_android_tiffloader_TiffLoader_getSizeForDirectory(JNIEnv *, jobject, jint dir);
 
+/**
+ * Returns a Bitmap representation of the given directory of the TIFF
+ */
+jobject Java_si_dime_android_tiffloader_TiffLoader_nativeGetBitmap(JNIEnv *, jobject, jint dir, jint sampleSize);
+
 
 #ifdef __cplusplus
 }

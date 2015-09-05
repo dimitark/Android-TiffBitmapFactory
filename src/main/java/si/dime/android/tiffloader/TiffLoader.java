@@ -1,6 +1,7 @@
 package si.dime.android.tiffloader;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import java.io.File;
@@ -49,6 +50,15 @@ public class TiffLoader {
      */
     private native void close();
 
+    /**
+     * Returns the Bitmap for the given directory.
+     *
+     * @param dir
+     * @param sampleSize
+     * @return
+     */
+    private native Bitmap nativeGetBitmap(int dir, int sampleSize);
+
 
     /**
      * Returns the number of directories in the TIFF file (number of pages)
@@ -58,7 +68,7 @@ public class TiffLoader {
     public native int getDirectoryCount();
 
     /**
-     * Returns the size of the given directory (width x height)
+     * Returns the size of the given directory (width, height)
      *
      * @param dir
      * @return
@@ -110,6 +120,29 @@ public class TiffLoader {
         if (tempFile != null) {
             tempFile.delete();
         }
+    }
+
+
+    /**
+     * Returns the bitmap for the given directory.
+     *
+     * NOTE!!!: The caller is responsible for recycling the Bitmap!
+     *
+     * @param dir
+     * @param sampleSize
+     *
+     * @throws OutOfMemoryError
+     *
+     * @return
+     */
+    public Bitmap getBitmap(int dir, int sampleSize) throws OutOfMemoryError {
+        Bitmap bitmap = nativeGetBitmap(dir, sampleSize);
+        // Check for OutOfMemory error
+        if (bitmap == null) {
+            throw new OutOfMemoryError();
+        }
+        // Return the bitmap
+        return bitmap;
     }
 
 

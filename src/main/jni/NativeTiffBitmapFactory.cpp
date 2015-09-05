@@ -213,8 +213,7 @@ jobject createBitmap(JNIEnv *env, int inSampleSize, int directoryNumber, jobject
     return java_bitmap;
 }
 
-jint *createBitmapARGB8888(JNIEnv *env, int inSampleSize, unsigned int *buffer, int *bitmapwidth,
-                           int *bitmapheight) {
+jint *createBitmapARGB8888(JNIEnv *env, int inSampleSize, unsigned int *buffer, int *bitmapwidth, int *bitmapheight) {
     jint *pixels = NULL;
     if (inSampleSize > 1) {
         *bitmapwidth = origwidth / inSampleSize;

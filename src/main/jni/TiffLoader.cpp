@@ -79,6 +79,13 @@ jintArray Java_si_dime_android_tiffloader_TiffLoader_getSizeForDirectory(JNIEnv 
     return result;
 }
 
+/**
+ * Returns a Bitmap representation of the given directory of the TIFF
+ */
+jobject Java_si_dime_android_tiffloader_TiffLoader_nativeGetBitmap(JNIEnv *env, jobject thiz, jint dir, jint sampleSize) {
+    TiffImage *obj = getInstance(env, thiz);
+    return obj->createBitmap(env, dir, sampleSize);
+}
 
 
 

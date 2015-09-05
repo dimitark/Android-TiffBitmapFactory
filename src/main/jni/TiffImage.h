@@ -26,6 +26,7 @@ public:
     bool successfullyLoaded();
     int getDirectoryCount();
     int* getSizeForDirectory(int dir);
+    jobject createBitmap(JNIEnv *env, int dir, int inSampleSize);
 
 private:
     TIFF *image;
@@ -36,6 +37,8 @@ private:
     void readSizes();
     int* lastReadSizeAddress;
     bool shouldReleaseSizeArray;
+    int colorMask;
+    jint* createBitmapARGB8888(JNIEnv *env, int inSampleSize, unsigned int *buffer, int *bitmapwidth, int *bitmapheight, int origwidth, int origheight);
 };
 
 
