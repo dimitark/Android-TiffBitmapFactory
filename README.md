@@ -55,7 +55,7 @@ try {
 ### Build
 To build the native part of the library use [Android-NDK-bundle-10](https://developer.android.com/tools/sdk/ndk/index.html) or higher.
 
-Go to the root directory and run
+Go to the ROOT_DIR/tifflib and run
 ```
 ndk-build NDK_PROJECT_PATH=src/main
 ```
