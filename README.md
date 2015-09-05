@@ -40,6 +40,9 @@ try {
     // Don't forget to RECYCLE!
     firstPageHalfSize.recycle();
     secondPageOriginalSize.recycle();
+
+    // And ALWAYS destroy the object!
+    loader.destroy();
 } catch (IOException e) {
     Log.e("App", "Error while reading asset", e);
 } catch (TiffLoadFailedException e) {
