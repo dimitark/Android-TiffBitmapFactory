@@ -129,7 +129,12 @@ public class TiffLoader {
      * NOTE!!!: The caller is responsible for recycling the Bitmap!
      *
      * @param dir
+     *      Which directory (page) to get
      * @param sampleSize
+     *      The size of the returned image
+     *      1 = original size
+     *      2 = half the size (original / 2)
+     *      ... originalSize / sampleSize
      *
      * @throws OutOfMemoryError
      *
