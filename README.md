@@ -9,6 +9,30 @@ For decoding the TIFF images it uses the native library [libtiff](https://github
 
 At the moment the supported platforms are: **x86 armeabi armeabi-v7a**
 
+### Gradle
+
+To include the library in your project, you first need to add the maven repository in you build.gradle file which is located **in the root directory** of your project and NOT in the **application subdirectory**.
+
+It should look something like:
+
+```
+allprojects {
+    repositories {
+        jcenter()
+        maven {
+            url  "http://dl.bintray.com/dimitark/maven"
+        }
+    }
+}
+```
+
+After that you need to include the library as a dependency in the build.gradle file in your **application subdirectory**.
+
+```
+compile 'si.dime.android:tiffloader-android:1.0.0'
+```
+
+
 ### Usage
 ```Java
 try {
