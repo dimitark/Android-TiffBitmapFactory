@@ -22,11 +22,20 @@ class TiffImage {
 
 public:
     TiffImage(JNIEnv *env, jstring path);
+    ~TiffImage();
     bool successfullyLoaded();
+    int getDirectoryCount();
+    int* getSizeForDirectory(int dir);
 
 private:
     TIFF *image;
     bool errorLoading;
+    int directoryCount;
+    int* widths;
+    int* heights;
+    void readSizes();
+    int* lastReadSizeAddress;
+    bool shouldReleaseSizeArray;
 };
 
 

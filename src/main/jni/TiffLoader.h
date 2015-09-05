@@ -25,13 +25,24 @@ jlong Java_si_dime_android_tiffloader_TiffLoader_read(JNIEnv *env, jobject, jstr
 /**
  * Releases the TiffImage C++ object
  */
-void Java_si_dime_android_tiffloader_TiffLoader_close(JNIEnv *, jobject, jlong ptr);
+void Java_si_dime_android_tiffloader_TiffLoader_close(JNIEnv *, jobject);
 
 /**
  * Returns true if the image was successfully loaded and
  * we can work with it.
  */
-jboolean Java_si_dime_android_tiffloader_TiffLoader_successfullyLoaded(JNIEnv *, jobject, jlong ptr);
+jboolean Java_si_dime_android_tiffloader_TiffLoader_successfullyLoaded(JNIEnv *, jobject);
+
+/**
+ * Returns the number of directories (pages)
+ */
+jint Java_si_dime_android_tiffloader_TiffLoader_getDirectoryCount(JNIEnv *, jobject);
+
+
+/**
+ * Returns the size of the given directory
+ */
+jintArray Java_si_dime_android_tiffloader_TiffLoader_getSizeForDirectory(JNIEnv *, jobject, jint dir);
 
 
 #ifdef __cplusplus

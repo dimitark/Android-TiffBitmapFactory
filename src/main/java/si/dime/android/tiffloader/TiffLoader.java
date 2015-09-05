@@ -49,6 +49,22 @@ public class TiffLoader {
      */
     private native void close();
 
+
+    /**
+     * Returns the number of directories in the TIFF file (number of pages)
+     *
+     * @return
+     */
+    public native int getDirectoryCount();
+
+    /**
+     * Returns the size of the given directory (width x height)
+     *
+     * @param dir
+     * @return
+     */
+    public native int[] getSizeForDirectory(int dir);
+
     // endregion
 
 
@@ -87,12 +103,13 @@ public class TiffLoader {
      * Destroys the objects and releases memory.
      */
     public void destroy() {
+        // Destroy the native objects
+        close();
+
         // Delete the temp file (if exists)
         if (tempFile != null) {
             tempFile.delete();
         }
-        // Destroy the native objects
-        close();
     }
 
 
@@ -121,7 +138,7 @@ public class TiffLoader {
             Log.e("TiffLoader", "Error!" + ex.getMessage());
         }
         finally{
-            if (fos!=null){
+            if (fos != null) {
                 fos.close();
             }
         }
