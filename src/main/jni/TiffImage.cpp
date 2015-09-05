@@ -45,6 +45,11 @@ TiffImage::~TiffImage() {
     if (shouldReleaseSizeArray) {
         free(lastReadSizeAddress);
     }
+
+    if (image) {
+        TIFFClose(image);
+        image = NULL;
+    }
 }
 
 
