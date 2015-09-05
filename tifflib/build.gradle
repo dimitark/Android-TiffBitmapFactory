@@ -2,6 +2,14 @@ apply plugin: 'com.android.library'
 
 version = "1.0.0"
 
+ext {
+    PUBLISH_GROUP_ID = 'si.dime.android'
+    PUBLISH_ARTIFACT_ID = 'tiffloader-android'
+    PUBLISH_VERSION = version
+}
+
+
+
 android {
     signingConfigs {
         releaseconfig {
@@ -34,6 +42,8 @@ android {
         jniLibs.srcDir 'src/main/libs'
     }
 }
+
+apply from: 'https://raw.githubusercontent.com/ArthurHub/release-android-library/master/android-release-aar.gradle'
 
 
 dependencies {
