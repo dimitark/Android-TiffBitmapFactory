@@ -25,11 +25,11 @@ try {
     }
 
     // Get the second page (original size)
-    Bitmap firstPageOriginalSize = loader.getBitmap(
+    Bitmap secondPageOriginalSize = loader.getBitmap(
             1, // The page index
             1); // Indicating we want the original size
     // Get the first page (half the size)
-    Bitmap secondPageHalfSize = loader.getBitmap(
+    Bitmap firstPageHalfSize = loader.getBitmap(
             0, // The page index
             2); // Indicating we want the originalSize / 2
 
@@ -38,8 +38,8 @@ try {
     // ...
 
     // Don't forget to RECYCLE!
-    firstPageOriginalSize.recycle();
-    secondPageHalfSize.recycle();
+    firstPageHalfSize.recycle();
+    secondPageOriginalSize.recycle();
 } catch (IOException e) {
     Log.e("App", "Error while reading asset", e);
 } catch (TiffLoadFailedException e) {
