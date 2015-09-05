@@ -1,6 +1,15 @@
 apply plugin: 'com.android.library'
 
 android {
+    signingConfigs {
+        releaseconfig {
+            storeFile file('../../android-release-key.keystore')
+            storePassword "dimitar"
+            keyAlias 'dimeandroid'
+            keyPassword "dimitar"
+        }
+    }
+
     compileSdkVersion 22
     buildToolsVersion "23.0.0"
 
@@ -12,6 +21,7 @@ android {
     }
     buildTypes {
         release {
+            signingConfig  signingConfigs.releaseconfig
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
