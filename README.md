@@ -1,7 +1,8 @@
 # TiffLoader-Android
-TiffLoader-Android is an Android library that allow you to load TIFF images.
+TiffLoader-Android is an Android library that allows you to load TIFF images.
 
 It is a fork of [Android-TiffBitmapFactory](https://github.com/Beyka/Android-TiffBitmapFactory)
+
 For decoding the TIFF images it uses the native library [libtiff](https://github.com/dumganhar/libtiff)
 
 ### Supported platforms
@@ -24,9 +25,13 @@ try {
     }
 
     // Get the second page (original size)
-    Bitmap firstPageOriginalSize = loader.getBitmap(1 /* The page index */, 1 /* Indicating we want the original size */);
+    Bitmap firstPageOriginalSize = loader.getBitmap(
+            1, // The page index
+            1); // Indicating we want the original size
     // Get the first page (half the size)
-    Bitmap secondPageHalfSize = loader.getBitmap(0 /* The page index */, 2 /* Indicating we want the originalSize/2 */);
+    Bitmap secondPageHalfSize = loader.getBitmap(
+            0, // The page index
+            2); // Indicating we want the originalSize / 2
 
     // Do magic with the bitmaps
     // ...
