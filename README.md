@@ -1,13 +1,13 @@
 # TiffLoader-Android
 TiffLoader-Android is an Android library that allows you to load TIFF images.
 
-It is a fork of [Android-TiffBitmapFactory](https://github.com/Beyka/Android-TiffBitmapFactory)
+This library is a fork of [Android-TiffBitmapFactory](https://github.com/Beyka/Android-TiffBitmapFactory)
 
 For decoding the TIFF images it uses the native library [libtiff](https://github.com/dumganhar/libtiff)
 
 ### Supported platforms
 
-At the moment the supported platforms are: x86 armeabi armeabi-v7a
+At the moment the supported platforms are: **x86 armeabi armeabi-v7a**
 
 ### Usage
 ```Java
