@@ -27,6 +27,14 @@ public class TiffLoader {
     // A temp file (not null just if called the constructor with the input stream)
     private File tempFile;
 
+    // The current getBitmap() calls running
+    private int nativeGetBitmapCounter = 0;
+
+    // Did somebody already called destroy?
+    private boolean destroyed = false;
+
+    // The semaphore
+    private Object lock = new Object();
 
     // region Native methods
 
@@ -113,6 +121,21 @@ public class TiffLoader {
      * Destroys the objects and releases memory.
      */
     public void destroy() {
+        synchronized (lock) {
+            // Set the flag
+            destroyed = true;
+
+            // Check for running getBitmap()
+            if (nativeGetBitmapCounter == 0) {
+                actualDestroy();
+            }
+        }
+    }
+
+    /**
+     * Actually destroys the object
+     */
+    private void actualDestroy() {
         // Destroy the native objects
         close();
 
@@ -141,7 +164,26 @@ public class TiffLoader {
      * @return
      */
     public Bitmap getBitmap(int dir, int sampleSize) throws OutOfMemoryError {
+        // Check if we are destroyed
+        synchronized (lock) {
+            if (destroyed) {
+                throw new IllegalStateException("The loader is already destroyed!");
+            }
+
+            // If not - increase the counter
+            nativeGetBitmapCounter++;
+        }
+
         Bitmap bitmap = nativeGetBitmap(dir, sampleSize);
+
+        // Decrease the counter
+        synchronized (lock) {
+            // Decrease the counter & check if we need to actually destroy the object
+            if (--nativeGetBitmapCounter == 0 && destroyed) {
+                actualDestroy();
+            }
+        }
+
         // Check for OutOfMemory error
         if (bitmap == null) {
             throw new OutOfMemoryError();
