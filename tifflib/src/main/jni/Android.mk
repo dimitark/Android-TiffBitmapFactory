@@ -1,7 +1,27 @@
 LOCAL_PATH := $(call my-dir)
 
+########################################################### libjpeg
 include $(CLEAR_VARS)
 
+LOCAL_MODULE := libjpeg
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/jpeg/include/
+LOCAL_ARM_MODE := arm
+
+ifeq ($(TARGET_ARCH),arm)
+	LOCAL_SRC_FILES := jpeg/lib/libjpeg.a
+else
+	ifeq ($(TARGET_ARCH),x86)
+		LOCAL_SRC_FILES := jpeg/lib/libjpeg-x86.a
+	endif
+endif
+
+include $(PREBUILT_STATIC_LIBRARY)
+
+########################################################### libtiff
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE:= libtiff
 LOCAL_ARM_MODE := arm
 
 LOCAL_TIFF_SRC_FILES := \
@@ -42,47 +62,31 @@ LOCAL_TIFF_SRC_FILES := \
 	tiff/libtiff/tif_aux.c \
 	tiff/libtiff/tif_fax3sm.c \
 	tiff/libtiff/tif_swab.c \
-	tiff/libtiff/tif_strip.c
-
-LOCAL_TIFF_SRC_FILES += tiff/port/lfind.c 
-###########################################################
+	tiff/libtiff/tif_strip.c \
+	tiff/port/lfind.c
 
 LOCAL_SRC_FILES:= $(LOCAL_TIFF_SRC_FILES)
-LOCAL_C_INCLUDES += \
-					$(LOCAL_PATH)/tiff/libtiff \
-					$(LOCAL_PATH)/jpeg
-
-
-LOCAL_STATIC_LIBRARIES := \
-					$(LOCAL_PATH)/libs/libjpeg.a \
-					$(LOCAL_PATH)/libs/libjpeg-x86.a
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/tiff/libtiff
 
 LOCAL_CFLAGS += -DAVOID_TABLES 
 LOCAL_CFLAGS += -O3 -fstrict-aliasing -fprefetch-loop-arrays
-LOCAL_MODULE:= libtiff
 LOCAL_LDLIBS := -lz
-	#-L $(LOCAL_PATH)/libs \
-	#-L $(LOCAL_STATIC_LIBRARIES) \
-	#-ljpeg
-ifeq ($(TARGET_ARCH),arm)
-	LOCAL_LDLIBS += $(LOCAL_PATH)/libs/libjpeg.a
-else
-	ifeq ($(TARGET_ARCH),x86)
-		LOCAL_LDLIBS += $(LOCAL_PATH)/libs/libjpeg-x86.a
-	endif
-endif
+LOCAL_STATIC_LIBRARIES = libjpeg
 
-#LOCAL_PRELINK_MODULE:=false
 include $(BUILD_SHARED_LIBRARY)
 
 ###############################################################
 include $(CLEAR_VARS)
+
 LOCAL_MODULE := tifffactory
 LOCAL_CFLAGS := -DANDROID_NDK
+
 LOCAL_SRC_FILES := \
 	TiffLoader.cpp \
 	TiffImage.cpp
+
 LOCAL_LDLIBS := -ldl -llog -ljnigraphics
 LOCAL_LDFLAGS +=-ljnigraphics
+
 LOCAL_SHARED_LIBRARIES := tiff
 include $(BUILD_SHARED_LIBRARY)
