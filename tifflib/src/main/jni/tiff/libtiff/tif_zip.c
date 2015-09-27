@@ -346,7 +346,8 @@ TIFFInitZIP(TIFF* tif, int scheme)
 	ZIPState* sp;
 
 	assert( (scheme == COMPRESSION_DEFLATE)
-		|| (scheme == COMPRESSION_ADOBE_DEFLATE));
+		|| (scheme == COMPRESSION_ADOBE_DEFLATE)
+		|| (scheme == COMPRESSION_ZIP));
 
 	/*
 	 * Merge codec-specific tag information.
